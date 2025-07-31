@@ -1,6 +1,44 @@
-# Getting Started with Create React App
+# Social Media App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React TypeScript social media application with Firebase authentication and real-time posting features.
+
+## Features
+
+- Google Authentication via Firebase Auth
+- Create and view posts
+- Like/unlike posts functionality
+- Real-time data with Firestore
+- Responsive design
+
+## Prerequisites
+
+Before running this application, make sure you have:
+
+- Node.js (version 14 or higher)
+- npm or yarn
+- A Firebase project with Authentication and Firestore enabled
+
+## Setup Instructions
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up Firebase configuration:
+   - Copy `.env.example` to `.env`
+   - Replace the placeholder values with your actual Firebase configuration values
+   - You can find these values in your Firebase project settings
+
+4. Enable Google Authentication in your Firebase Console:
+   - Go to Authentication > Sign-in method
+   - Enable Google sign-in provider
+
+5. Set up Firestore:
+   - Go to Firestore Database
+   - Create a database in test mode or production mode
+   - The app will automatically create the required collections (`posts` and `likes`)
 
 ## Available Scripts
 
@@ -29,15 +67,37 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+src/
+├── components/         # Reusable components
+│   └── navbar.tsx     # Navigation component
+├── config/            # Configuration files
+│   └── firebase.ts    # Firebase configuration
+├── pages/             # Page components
+│   ├── create-post/   # Post creation functionality
+│   ├── login.tsx      # Login page
+│   └── main/          # Home page with posts
+└── App.tsx            # Main app component
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React 18
+- TypeScript
+- Firebase (Auth, Firestore)
+- React Router
+- React Hook Form with Yup validation
+- CSS for styling
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run `npm run build` to ensure everything compiles
+5. Submit a pull request
 
 ## Learn More
 
