@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { addDoc, collection, getDocs, query, where, deleteDoc, doc } from "firebase/firestore";
-import { Post as IPost } from "./main";
+import { IPost } from "./main";
 import { auth, db } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "../../App.css";
@@ -22,10 +22,10 @@ export const Post = (props: Props) => {
     const likesRef = collection(db, "likes");
     const likesDoc = query(likesRef, where("postId", "==", post.id));
 
-    const getLikes = async () => {
+    const getLikes = useCallback(async () => {
         const data = await getDocs(likesDoc);
         setLikes(data.docs.map((doc) => ({ userId: doc.data().userId, likeId: doc.id })));
-    };
+    }, [likesDoc]);
 
     const addLike = async () => {
         try {
@@ -63,7 +63,7 @@ export const Post = (props: Props) => {
 
     useEffect(() => {
         getLikes();
-    }, []);
+    }, [getLikes]);
 
     return (
         <div className="post-container">
